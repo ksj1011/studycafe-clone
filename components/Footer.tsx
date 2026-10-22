@@ -8,8 +8,8 @@ const cols = [
 export default function Footer() {
   return (
     <footer>
-      <div className="grid grid-cols-2 md:grid-cols-5">
-        {gallery.map((g, i) => (<img key={i} src={g} alt="" className={`h-[220px] w-full object-cover ${i === 0 ? "col-span-2" : ""}`} />))}
+      <div className="grid grid-cols-2 md:grid-cols-6">
+        {gallery.map((g, i) => (<img key={i} src={g} alt="" draggable={false} className={`h-[180px] w-full object-cover object-[60%_50%] md:h-[240px] ${i === 0 ? "col-span-2" : ""}`} />))}
       </div>
       <div id="contact" className="mx-auto flex max-w-[1280px] scroll-mt-[68px] flex-col gap-12 px-6 py-16 md:flex-row md:justify-between">
         <div>
