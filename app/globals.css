@@ -6,5 +6,5 @@ body { color: var(--ink); background: #fff; font-family: Pretendard, -apple-syst
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee { animation: marquee 40s linear infinite; }
+.marquee { animation: marquee 120s linear infinite; }
 .marquee:hover { animation-play-state: paused; }
