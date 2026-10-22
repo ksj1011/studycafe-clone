@@ -7,10 +7,10 @@ export default function Pricing() {
   return (
     <section id="promotion" className="scroll-mt-[68px] py-20 text-center">
       <span className="inline-block -rotate-2 bg-[var(--accent)] px-3 py-1 text-sm font-extrabold">10월 프로모션</span>
-      <h2 className="mt-4 text-4xl font-extrabold">라운지 패스 요금제</h2>
+      <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">라운지 패스 요금제</h2>
       <div className="mx-auto mt-10 flex w-fit rounded-full border-2 border-black/10 p-1">
         {([["subscription", "구독"], ["oneday", "원데이"]] as const).map(([k, l]) => (
-          <button key={k} onClick={() => setTab(k)} className={`rounded-full px-8 py-2 text-sm font-semibold ${tab === k ? "bg-white shadow ring-1 ring-black/10" : "text-neutral-400"}`}>{l}</button>
+          <button key={k} onClick={() => setTab(k)} className={`rounded-full px-8 py-3 text-sm font-semibold ${tab === k ? "bg-white shadow ring-1 ring-black/10" : "text-neutral-400"}`}>{l}</button>
         ))}
       </div>
       <div className="no-scrollbar mx-auto mt-8 flex max-w-[1280px] snap-x scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 text-left">

@@ -10,11 +10,11 @@ export default function Branches() {
   return (
     <section id="branches" className="scroll-mt-[68px] py-16">
       <div className="mx-auto max-w-[1120px] px-6">
-        <h2 className="mb-6 text-3xl font-bold">가까운 지점을 찾아보세요</h2>
-        <div className="relative z-0 h-[420px] overflow-hidden rounded-3xl"><BranchMap /></div>
+        <h2 className="mb-6 text-2xl font-bold sm:text-3xl">가까운 지점을 찾아보세요</h2>
+        <div className="relative z-0 h-[340px] overflow-hidden rounded-3xl sm:h-[420px]"><BranchMap /></div>
       </div>
-      <h2 className="mt-20 text-center text-3xl font-bold">이용 후기</h2>
-      <div className="mt-10 overflow-hidden">
+      <h2 className="mt-14 text-center text-2xl font-bold sm:mt-20 sm:text-3xl">이용 후기</h2>
+      <div className="mt-10 overflow-hidden motion-reduce:overflow-x-auto">
         <div className="marquee flex w-max">
           {[0, 1].map((g) => (
             <div key={g} aria-hidden={g === 1} className="flex shrink-0 gap-4 pr-4">

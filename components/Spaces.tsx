@@ -55,8 +55,8 @@ export default function Spaces() {
   return (
     <section id="products" className="scroll-mt-[68px] py-16">
       <div className="mx-auto max-w-[640px] px-6">
-        <h2 className="text-3xl font-bold leading-snug">5가지 스타일의<br />라운지를 이용하세요</h2>
-        <p className="mt-6 text-lg text-neutral-700">비즈니스, 작업, 공부 어떤 목적에도 맞는 좌석</p>
+        <h2 className="text-2xl font-bold leading-snug sm:text-3xl">5가지 스타일의<br />라운지를 이용하세요</h2>
+        <p className="mt-6 text-base text-neutral-700 sm:text-lg">비즈니스, 작업, 공부 어떤 목적에도 맞는 좌석</p>
       </div>
       <div className="relative mt-10">
         <button aria-label="이전" className={`${arrow} left-6`} disabled={index === 0} onClick={() => goTo(index - 1)}>‹</button>
@@ -73,8 +73,8 @@ export default function Spaces() {
           style={{ scrollPaddingLeft: "max(24px, calc(50vw - 320px))" }}
         >
           {spaces.map((s, i) => (
-            <article key={s.title} className={`group relative h-[420px] w-[640px] max-w-[85vw] shrink-0 snap-start overflow-hidden rounded-2xl text-white transition-opacity duration-300 ${i === index ? "opacity-100" : "opacity-60"}`}>
-              <img src={s.img} alt={s.title} draggable={false} className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <article key={s.title} className={`group relative h-[360px] w-[640px] sm:h-[420px] max-w-[85vw] shrink-0 snap-start overflow-hidden rounded-2xl text-white transition-opacity duration-300 ${i === index ? "opacity-100" : "opacity-60"}`}>
+              <img src={s.img} alt={s.title} loading="lazy" decoding="async" draggable={false} className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-8 left-8 z-10 transition-transform duration-300 group-hover:-translate-y-1">
                 <h3 className="font-semibold">{s.title}</h3>
@@ -84,9 +84,9 @@ export default function Spaces() {
           ))}
         </div>
       </div>
-      <div className="mt-6 flex justify-center gap-2">
+      <div className="mt-4 flex justify-center">
         {spaces.map((s, i) => (
-          <button key={s.title} aria-label={`${s.title} 보기`} onClick={() => goTo(i)} className={`h-2 rounded-full transition-all ${i === index ? "w-6 bg-neutral-900" : "w-2 bg-neutral-300"}`} />
+          <button key={s.title} aria-label={`${s.title} 보기`} onClick={() => goTo(i)} className="flex h-8 items-center px-2"><span className={`block h-2 rounded-full transition-all ${i === index ? "w-6 bg-neutral-900" : "w-2 bg-neutral-300"}`} /></button>
         ))}
       </div>
     </section>

@@ -21,20 +21,27 @@ const clusterIcon = (cluster: L.MarkerCluster) =>
     iconSize: [0, 0],
   });
 
+const bounds = L.latLngBounds(branches.map((b) => [b.lat, b.lng] as [number, number]));
+
 function Clusters() {
   const map = useMap();
   useEffect(() => {
     const group = L.markerClusterGroup({ iconCreateFunction: clusterIcon, maxClusterRadius: 60, showCoverageOnHover: false });
     branches.forEach((b) => group.addLayer(L.marker([b.lat, b.lng], { icon: label(b.name) })));
     map.addLayer(group);
-    return () => { map.removeLayer(group); };
+    // 화면 크기에 맞춰 모든 지점이 여백과 함께 보이도록 다시 맞춘다
+    const fit = () => map.fitBounds(bounds, { padding: [48, 48], animate: false });
+    fit();
+    map.on("resize", fit);
+    return () => { map.off("resize", fit); map.removeLayer(group); };
   }, [map]);
   return null;
 }
 
 export default function BranchMap() {
   return (
-    <MapContainer center={[37.5173, 127.042]} zoom={11} scrollWheelZoom={false} className="h-full w-full">
+    // 모바일에서는 한 손가락 드래그가 페이지 스크롤을 막지 않도록 지도 이동을 끈다 (핀치 줌은 유지)
+    <MapContainer center={[37.5173, 127.042]} zoom={11} scrollWheelZoom={false} dragging={!L.Browser.mobile} className="h-full w-full">
       <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Clusters />
     </MapContainer>

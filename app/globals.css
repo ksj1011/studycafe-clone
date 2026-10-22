@@ -8,3 +8,11 @@ body { color: var(--ink); background: #fff; font-family: Pretendard, -apple-syst
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee { animation: marquee 120s linear infinite; }
 .marquee:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee { animation: none; }
+}
+@media (pointer: coarse) {
+  .leaflet-bar a { width: 40px !important; height: 40px !important; line-height: 40px !important; }
+}

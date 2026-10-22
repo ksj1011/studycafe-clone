@@ -7,9 +7,9 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="pb-20">
       <div className="grid grid-cols-2 md:grid-cols-6">
-        {gallery.map((g, i) => (<img key={i} src={g} alt="" draggable={false} className={`h-[180px] w-full object-cover object-[60%_50%] md:h-[240px] ${i === 0 ? "col-span-2" : ""}`} />))}
+        {gallery.map((g, i) => (<img key={i} src={g} alt="" loading="lazy" decoding="async" draggable={false} className={`h-[180px] w-full object-cover object-[60%_50%] md:h-[240px] ${i === 0 ? "col-span-2" : ""}`} />))}
       </div>
       <div id="contact" className="mx-auto flex max-w-[1280px] scroll-mt-[68px] flex-col gap-12 px-6 py-16 md:flex-row md:justify-between">
         <div>
@@ -23,13 +23,13 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="mx-auto mb-10 max-w-[1280px] rounded-3xl bg-neutral-100 p-10 text-xs text-neutral-600">
+      <div className="px-4 pb-10 sm:px-6"><div className="mx-auto max-w-[1280px] rounded-3xl bg-neutral-100 p-6 text-xs text-neutral-600 sm:p-10">
         <b className="text-base tracking-widest text-black">{brand.name}</b>
         <p className="mt-4">{brand.biz}</p>
         <p className="mt-2">{brand.address}</p>
         <p className="mt-2">© {brand.name}</p>
         <p className="mt-6 font-semibold text-neutral-800">이용약관 &nbsp;|&nbsp; 개인정보 처리방침</p>
-      </div>
+      </div></div>
     </footer>
   );
 }
