@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { asset } from "@/lib/content";
 
 const KEY = "popup-hidden-until";
 
@@ -15,7 +16,7 @@ export default function Popup() {
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30">
       <div className="flex max-h-[calc(100dvh-24px)] w-[380px] max-w-[92vw] flex-col overflow-hidden rounded-3xl bg-white">
         <div className="relative flex h-[min(470px,calc(100dvh-170px))] min-h-[260px] shrink flex-col items-center justify-center overflow-hidden text-center text-white">
-          <img src="/images/open.svg" alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={asset("/images/open.svg")} alt="" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-black/40" />
           <p className="relative font-semibold text-[var(--yellow)]">NEW 라운지 패스</p>
           <p className="relative mt-3 text-5xl font-extrabold">신규 지점</p>

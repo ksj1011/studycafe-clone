@@ -21,12 +21,14 @@ export const facilities = [
   { title: "사무 용품", desc: "업무에 필요한 기본 용품을 비치했어요" },
 ];
 
+export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 export const spaces = [
-  { title: "오픈 테이블", desc: "카페 같은 자유로운 분위기의 오픈형 좌석", img: "/images/open.svg" },
-  { title: "듀얼 모니터 석", desc: "집중이 필요한 업무를 위한 모니터 좌석", img: "/images/monitor.svg" },
-  { title: "포커스 부스", desc: "칸막이로 분리된 조용한 1인 공간", img: "/images/booth.svg" },
-  { title: "소파 라운지", desc: "가벼운 미팅과 휴식을 위한 소파석", img: "/images/sofa.svg" },
-  { title: "스탠딩 바", desc: "잠깐의 작업에 좋은 스탠딩 좌석", img: "/images/stand.svg" },
+  { title: "오픈 테이블", desc: "카페 같은 자유로운 분위기의 오픈형 좌석", img: asset("/images/open.svg") },
+  { title: "듀얼 모니터 석", desc: "집중이 필요한 업무를 위한 모니터 좌석", img: asset("/images/monitor.svg") },
+  { title: "포커스 부스", desc: "칸막이로 분리된 조용한 1인 공간", img: asset("/images/booth.svg") },
+  { title: "소파 라운지", desc: "가벼운 미팅과 휴식을 위한 소파석", img: asset("/images/sofa.svg") },
+  { title: "스탠딩 바", desc: "잠깐의 작업에 좋은 스탠딩 좌석", img: asset("/images/stand.svg") },
 ];
 
 export const plans = {
@@ -60,4 +62,4 @@ export const reviews = [
   { text: "조용하지만 너무 적막하지 않아서 적당한 분위기에서 일할 수 있어요.", name: "이*지", place: "홍대점" },
 ];
 
-export const gallery = ["hero", "open", "monitor", "booth", "sofa"].map((n) => `/images/${n}.svg`);
+export const gallery = ["hero", "open", "monitor", "booth", "sofa"].map((n) => asset(`/images/${n}.svg`));
