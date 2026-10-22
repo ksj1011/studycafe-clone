@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="grid grid-cols-2 md:grid-cols-5">
         {gallery.map((g, i) => (<img key={i} src={g} alt="" className={`h-[220px] w-full object-cover ${i === 0 ? "col-span-2" : ""}`} />))}
       </div>
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 py-16 md:flex-row md:justify-between">
+      <div id="contact" className="mx-auto flex max-w-[1280px] scroll-mt-[68px] flex-col gap-12 px-6 py-16 md:flex-row md:justify-between">
         <div>
           <h3 className="text-2xl font-bold leading-snug">입주 문의</h3>
           <p className="mt-3 text-xs text-neutral-500">운영시간 : {brand.hours}</p>

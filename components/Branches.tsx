@@ -7,7 +7,7 @@ const BranchMap = dynamic(() => import("./BranchMap"), { ssr: false, loading: ()
 export default function Branches() {
   const loop = [...reviews, ...reviews];
   return (
-    <section className="py-16">
+    <section id="branches" className="scroll-mt-[68px] py-16">
       <div className="mx-auto max-w-[1120px] px-6">
         <h2 className="mb-6 text-3xl font-bold">가까운 지점을 찾아보세요</h2>
         <div className="relative z-0 h-[420px] overflow-hidden rounded-3xl"><BranchMap /></div>

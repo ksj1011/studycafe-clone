@@ -7,7 +7,12 @@ export const brand = {
   biz: "사업자 등록번호 : 000-00-00000",
 };
 
-export const nav = ["지점찾기", "프로모션", "상품 안내", "창업 안내"];
+export const nav = [
+  { label: "지점찾기", id: "branches" },
+  { label: "프로모션", id: "promotion" },
+  { label: "상품 안내", id: "products" },
+  { label: "창업 안내", id: "contact" },
+];
 
 export const facilities = [
   { title: "카페테리아", desc: "무제한으로 즐기는 커피와 차를 준비했어요" },

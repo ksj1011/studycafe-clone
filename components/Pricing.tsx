@@ -5,7 +5,7 @@ import { plans } from "@/lib/content";
 export default function Pricing() {
   const [tab, setTab] = useState<"subscription" | "oneday">("subscription");
   return (
-    <section className="py-20 text-center">
+    <section id="promotion" className="scroll-mt-[68px] py-20 text-center">
       <span className="inline-block -rotate-2 bg-[var(--accent)] px-3 py-1 text-sm font-extrabold">10월 프로모션</span>
       <h2 className="mt-4 text-4xl font-extrabold">라운지 패스 요금제</h2>
       <div className="mx-auto mt-10 flex w-fit rounded-full border-2 border-black/10 p-1">
