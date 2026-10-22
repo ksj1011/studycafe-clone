@@ -13,13 +13,13 @@ export default function Pricing() {
           <button key={k} onClick={() => setTab(k)} className={`rounded-full px-8 py-2 text-sm font-semibold ${tab === k ? "bg-white shadow ring-1 ring-black/10" : "text-neutral-400"}`}>{l}</button>
         ))}
       </div>
-      <div className="no-scrollbar mx-auto mt-8 flex max-w-[1200px] gap-4 overflow-x-auto px-6 text-left">
+      <div className="no-scrollbar mx-auto mt-8 flex max-w-[1280px] snap-x scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 text-left">
         {plans[tab].map((p) => (
-          <div key={p.name} className={`w-[300px] shrink-0 rounded-3xl p-6 ${p.best ? "bg-gradient-to-b from-purple-900 to-purple-600 text-white" : "bg-gradient-to-b from-purple-100 to-purple-50"}`}>
+          <div key={p.name} className={`w-[300px] shrink-0 snap-start rounded-3xl p-6 first:ml-auto last:mr-auto lg:w-auto lg:max-w-[360px] lg:flex-1 lg:shrink ${p.best ? "bg-gradient-to-b from-purple-900 to-purple-600 text-white" : "bg-gradient-to-b from-purple-100 to-purple-50"}`}>
             <div className="flex items-center gap-2 font-semibold">{p.name}{p.best && <span className="rounded-full bg-black px-2 py-0.5 text-xs">Best</span>}</div>
-            <p className="mt-6 text-3xl font-extrabold">월 {p.price}원<span className="ml-1 text-sm font-normal">부터</span></p>
+            <p className="mt-6 text-3xl font-extrabold">{tab === "subscription" ? "월" : "1일"} {p.price}원<span className="ml-1 text-sm font-normal">부터</span></p>
             <ul className="mt-6 space-y-2">
-              {p.perks.map((x) => (<li key={x} className="rounded-full bg-black/5 px-4 py-2 text-sm text-neutral-800">✔ {x}</li>))}
+              {p.perks.map((x) => (<li key={x} className={`rounded-full px-4 py-2 text-sm ${p.best ? "bg-white/15 text-white" : "bg-black/5 text-neutral-800"}`}>✔ {x}</li>))}
             </ul>
           </div>
         ))}
