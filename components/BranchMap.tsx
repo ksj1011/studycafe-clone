@@ -10,7 +10,7 @@ import { branches } from "@/lib/content";
 const label = (name: string) =>
   L.divIcon({
     className: "",
-    html: `<span style="white-space:nowrap;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:6px;padding:4px 10px;font:600 12px Pretendard,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,.15);transform:translate(-50%,-100%);display:inline-block">${name} ›</span>`,
+    html: `<span style="white-space:nowrap;background:#1b1c24;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font:600 12px Pretendard,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,.5);transform:translate(-50%,-100%);display:inline-block">${name} ›</span>`,
     iconSize: [0, 0],
   });
 

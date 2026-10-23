@@ -14,7 +14,7 @@ export default function Popup() {
   const hideToday = () => { try { localStorage.setItem(KEY, String(Date.now() + 86400000)); } catch {} setOpen(false); };
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/30">
-      <div className="flex max-h-[calc(100dvh-24px)] w-[380px] max-w-[92vw] flex-col overflow-hidden rounded-3xl bg-white">
+      <div className="flex max-h-[calc(100dvh-24px)] w-[380px] max-w-[92vw] flex-col overflow-hidden rounded-3xl bg-[var(--surface)]">
         <div className="relative flex h-[min(470px,calc(100dvh-170px))] min-h-[260px] shrink flex-col items-center justify-center overflow-hidden text-center text-white">
           <img src={asset("/images/open.svg")} alt="" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-black/40" />

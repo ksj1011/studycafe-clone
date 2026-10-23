@@ -6,25 +6,25 @@ export default function Pricing() {
   const [tab, setTab] = useState<"subscription" | "oneday">("subscription");
   return (
     <section id="promotion" className="scroll-mt-[68px] py-20 text-center">
-      <span className="inline-block -rotate-2 bg-[var(--accent)] px-3 py-1 text-sm font-extrabold">10월 프로모션</span>
+      <span className="inline-block -rotate-2 bg-[var(--accent)] px-3 py-1 text-sm font-extrabold text-neutral-900">10월 프로모션</span>
       <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">라운지 패스 요금제</h2>
-      <div className="mx-auto mt-10 flex w-fit rounded-full border-2 border-black/10 p-1">
+      <div className="mx-auto mt-10 flex w-fit rounded-full border-2 border-white/15 p-1">
         {([["subscription", "구독"], ["oneday", "원데이"]] as const).map(([k, l]) => (
-          <button key={k} onClick={() => setTab(k)} className={`rounded-full px-8 py-3 text-sm font-semibold ${tab === k ? "bg-white shadow ring-1 ring-black/10" : "text-neutral-400"}`}>{l}</button>
+          <button key={k} onClick={() => setTab(k)} className={`rounded-full px-8 py-3 text-sm font-semibold ${tab === k ? "bg-white/10 ring-1 ring-white/20" : "text-neutral-400"}`}>{l}</button>
         ))}
       </div>
       <div className="no-scrollbar mx-auto mt-8 flex max-w-[1280px] snap-x scroll-px-6 gap-4 overflow-x-auto px-6 pb-2 text-left">
         {plans[tab].map((p) => (
-          <div key={p.name} className={`w-[300px] shrink-0 snap-start rounded-3xl p-6 first:ml-auto last:mr-auto lg:w-auto lg:max-w-[360px] lg:flex-1 lg:shrink ${p.best ? "bg-gradient-to-b from-purple-900 to-purple-600 text-white" : "bg-gradient-to-b from-purple-100 to-purple-50"}`}>
+          <div key={p.name} className={`w-[300px] shrink-0 snap-start rounded-3xl p-6 first:ml-auto last:mr-auto lg:w-auto lg:max-w-[360px] lg:flex-1 lg:shrink ${p.best ? "bg-gradient-to-b from-purple-900 to-purple-600 text-white" : "bg-gradient-to-b from-[#2a1d45] to-[#1b1c24]"}`}>
             <div className="flex items-center gap-2 font-semibold">{p.name}{p.best && <span className="rounded-full bg-black px-2 py-0.5 text-xs">Best</span>}</div>
             <p className="mt-6 text-3xl font-extrabold">{tab === "subscription" ? "월" : "1일"} {p.price}원<span className="ml-1 text-sm font-normal">부터</span></p>
             <ul className="mt-6 space-y-2">
-              {p.perks.map((x) => (<li key={x} className={`rounded-full px-4 py-2 text-sm ${p.best ? "bg-white/15 text-white" : "bg-black/5 text-neutral-800"}`}>✔ {x}</li>))}
+              {p.perks.map((x) => (<li key={x} className={`rounded-full px-4 py-2 text-sm ${p.best ? "bg-white/15 text-white" : "bg-white/10 text-neutral-200"}`}>✔ {x}</li>))}
             </ul>
           </div>
         ))}
       </div>
-      <p className="mt-6 text-xs text-neutral-400">* 요금과 혜택은 예시이며 지점별로 다를 수 있습니다.</p>
+      <p className="mt-6 text-xs text-neutral-500">* 요금과 혜택은 예시이며 지점별로 다를 수 있습니다.</p>
     </section>
   );
 }

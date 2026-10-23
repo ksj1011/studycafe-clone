@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
-:root { --ink: #1e2024; --brand: #7a30e8; --accent: #6fb3a8; --yellow: #ffc61a; }
+:root { color-scheme: dark; --bg: #0f1014; --surface: #1b1c24; --ink: #ececf1; --brand: #a77bf5; --accent: #6fb3a8; --yellow: #ffc61a; }
 html { scroll-behavior: smooth; }
-body { color: var(--ink); background: #fff; font-family: Pretendard, -apple-system, "system-ui", "Apple SD Gothic Neo", sans-serif; }
+body { color: var(--ink); background: var(--bg); font-family: Pretendard, -apple-system, "system-ui", "Apple SD Gothic Neo", sans-serif; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+/* OSM 타일을 다크로 반전 (마커·클러스터는 다른 pane이라 영향 없음) */
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.95) contrast(.9); }
+.leaflet-container { background: var(--bg); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee { animation: marquee 120s linear infinite; }
 .marquee:hover { animation-play-state: paused; }

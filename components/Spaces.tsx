@@ -50,13 +50,13 @@ export default function Spaces() {
     goTo(Math.round(scroller.current!.scrollLeft / step()));
   };
 
-  const arrow = "absolute top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl shadow-lg transition hover:scale-110 disabled:pointer-events-none disabled:opacity-0 md:flex";
+  const arrow = "absolute top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-neutral-900 shadow-lg transition hover:scale-110 disabled:pointer-events-none disabled:opacity-0 md:flex";
 
   return (
     <section id="products" className="scroll-mt-[68px] py-16">
       <div className="mx-auto max-w-[640px] px-6">
         <h2 className="text-2xl font-bold leading-snug sm:text-3xl">5가지 스타일의<br />라운지를 이용하세요</h2>
-        <p className="mt-6 text-base text-neutral-700 sm:text-lg">비즈니스, 작업, 공부 어떤 목적에도 맞는 좌석</p>
+        <p className="mt-6 text-base text-neutral-300 sm:text-lg">비즈니스, 작업, 공부 어떤 목적에도 맞는 좌석</p>
       </div>
       <div className="relative mt-10">
         <button aria-label="이전" className={`${arrow} left-6`} disabled={index === 0} onClick={() => goTo(index - 1)}>‹</button>
@@ -86,7 +86,7 @@ export default function Spaces() {
       </div>
       <div className="mt-4 flex justify-center">
         {spaces.map((s, i) => (
-          <button key={s.title} aria-label={`${s.title} 보기`} onClick={() => goTo(i)} className="flex h-8 items-center px-2"><span className={`block h-2 rounded-full transition-all ${i === index ? "w-6 bg-neutral-900" : "w-2 bg-neutral-300"}`} /></button>
+          <button key={s.title} aria-label={`${s.title} 보기`} onClick={() => goTo(i)} className="flex h-8 items-center px-2"><span className={`block h-2 rounded-full transition-all ${i === index ? "w-6 bg-white" : "w-2 bg-neutral-700"}`} /></button>
         ))}
       </div>
     </section>

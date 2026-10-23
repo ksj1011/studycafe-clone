@@ -15,7 +15,7 @@ export default function Footer() {
         <div>
           <h3 className="text-2xl font-bold leading-snug">입주 문의</h3>
           <p className="mt-3 text-xs text-neutral-500">운영시간 : {brand.hours}</p>
-          <div className="mt-6 flex gap-2 text-xs"><span className="rounded-lg border px-4 py-3">{brand.phone}</span><span className="rounded-lg border px-4 py-3">입주문의</span></div>
+          <div className="mt-6 flex gap-2 text-xs"><span className="rounded-lg border border-white/20 px-4 py-3">{brand.phone}</span><span className="rounded-lg border border-white/20 px-4 py-3">입주문의</span></div>
         </div>
         <div className="flex gap-16 text-sm">
           {cols.map((c) => (
@@ -23,12 +23,12 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="px-4 pb-10 sm:px-6"><div className="mx-auto max-w-[1280px] rounded-3xl bg-neutral-100 p-6 text-xs text-neutral-600 sm:p-10">
-        <b className="text-base tracking-widest text-black">{brand.name}</b>
+      <div className="px-4 pb-10 sm:px-6"><div className="mx-auto max-w-[1280px] rounded-3xl bg-[var(--surface)] p-6 text-xs text-neutral-400 sm:p-10">
+        <b className="text-base tracking-widest text-white">{brand.name}</b>
         <p className="mt-4">{brand.biz}</p>
         <p className="mt-2">{brand.address}</p>
         <p className="mt-2">© {brand.name}</p>
-        <p className="mt-6 font-semibold text-neutral-800">이용약관 &nbsp;|&nbsp; 개인정보 처리방침</p>
+        <p className="mt-6 font-semibold text-neutral-200">이용약관 &nbsp;|&nbsp; 개인정보 처리방침</p>
       </div></div>
     </footer>
   );

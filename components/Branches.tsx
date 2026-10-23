@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { reviews } from "@/lib/content";
 
-const BranchMap = dynamic(() => import("./BranchMap"), { ssr: false, loading: () => <div className="h-full w-full bg-[#dfe7ea]" /> });
+const BranchMap = dynamic(() => import("./BranchMap"), { ssr: false, loading: () => <div className="h-full w-full bg-[var(--surface)]" /> });
 
 export default function Branches() {
   // 한 그룹이 화면보다 넓어야 루프 끝에서 빈 공간이 생기지 않는다 (카드 15장 ≈ 4350px)
@@ -19,10 +19,10 @@ export default function Branches() {
           {[0, 1].map((g) => (
             <div key={g} aria-hidden={g === 1} className="flex shrink-0 gap-4 pr-4">
               {group.map((r, i) => (
-                <figure key={i} className="w-[274px] shrink-0 rounded-2xl bg-neutral-100 p-5">
+                <figure key={i} className="w-[274px] shrink-0 rounded-2xl bg-[var(--surface)] p-5">
                   <div className="text-[var(--accent)]">★★★★★</div>
                   <blockquote className="mt-4 h-24 text-sm leading-6">{r.text}</blockquote>
-                  <figcaption className="mt-4 border-t border-black/10 pt-4"><b>{r.name} 님</b><div className="text-xs text-neutral-400">{r.place}</div></figcaption>
+                  <figcaption className="mt-4 border-t border-white/10 pt-4"><b>{r.name} 님</b><div className="text-xs text-neutral-400">{r.place}</div></figcaption>
                 </figure>
               ))}
             </div>

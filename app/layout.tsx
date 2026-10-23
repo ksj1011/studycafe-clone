@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "카페처럼 편안하고 스터디카페처럼 집중되는 라운지 패스",
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#0f1014" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
