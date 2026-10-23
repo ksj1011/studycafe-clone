@@ -6,7 +6,8 @@ import Pricing from "@/components/Pricing";
 import Branches from "@/components/Branches";
 import Footer from "@/components/Footer";
 import FloatingBuy from "@/components/FloatingBuy";
-import Popup from "@/components/Popup";
+// 초기 팝업: 다시 쓰려면 아래 import와 <Popup /> 주석을 해제
+// import Popup from "@/components/Popup";
 import { brand, branches } from "@/lib/content";
 
 // 전화번호·주소는 자리표시자라 구조화 데이터에 넣지 않는다 (실제 값으로 교체한 뒤 추가)
@@ -32,7 +33,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingBuy />
-      <Popup />
+      {/* <Popup /> */}
     </>
   );
 }
