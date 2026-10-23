@@ -47,8 +47,7 @@ export default function Header() {
             <a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-11 items-center border-b-2 px-2 transition-colors hover:text-[var(--brand)] ${active === n.id ? "border-[var(--brand)] text-[var(--brand)]" : "border-transparent"}`}>{n.label}</a>
           ))}
         </nav>
-        <button className="ml-auto min-h-10 shrink-0 whitespace-nowrap rounded-lg border border-black/10 px-3 text-xs transition hover:bg-neutral-50">로그인</button>
-        <button aria-label="메뉴" aria-expanded={open} onClick={() => setOpen((v) => !v)} className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-xl md:hidden">{open ? "✕" : "☰"}</button>
+        <button aria-label="메뉴" aria-expanded={open} onClick={() => setOpen((v) => !v)} className="-mr-2 ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-xl md:hidden">{open ? "✕" : "☰"}</button>
       </div>
       {open && (
         <nav className="absolute left-0 right-0 top-full flex flex-col border-b border-t border-black/5 bg-white px-6 py-2 shadow-lg md:hidden">
