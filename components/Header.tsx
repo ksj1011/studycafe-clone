@@ -6,6 +6,19 @@ export default function Header() {
   const [active, setActive] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
 
+  // 새로고침·재방문 시 항상 맨 위에서 시작 (이전 스크롤 위치/해시 복원 방지)
+  useEffect(() => {
+    history.scrollRestoration = "manual";
+    const hadHash = Boolean(location.hash);
+    if (hadHash) history.replaceState(null, "", location.pathname + location.search);
+    window.scrollTo(0, 0);
+    // 해시로 진입하면 브라우저가 로드 완료 후 해당 앵커로 한 번 더 스크롤하므로 그 뒤에 다시 맨 위로 보낸다
+    if (!hadHash || document.readyState === "complete") return;
+    const reset = () => requestAnimationFrame(() => window.scrollTo(0, 0));
+    window.addEventListener("load", reset, { once: true });
+    return () => window.removeEventListener("load", reset);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       // 메뉴 순서와 페이지 섹션 순서가 달라서, 헤더 아래에 걸친 섹션 중 시작점이 가장 아래인 것을 고른다
@@ -38,7 +51,6 @@ export default function Header() {
     e.preventDefault();
     setOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    history.replaceState(null, "", `#${id}`);
   };
 
   return (
