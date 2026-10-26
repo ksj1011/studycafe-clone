@@ -16,15 +16,15 @@ npm run build      # 빌드 (sitemap.xml / robots.txt 자동 생성)
 
 ## 사진 교체
 
-현재 사진은 샘플 일러스트입니다. 사용 권한을 확인한 실제 매장 사진(webp)을 `public/images/`에 아래 이름으로 넣으세요.
-
-`01_main` · `02_room_cream` · `03_seating` · `04_room_blue` · `05_room_green` · `06_hall`
-
-그다음 `lib/content.ts`의 `IMG_EXT`를 `"webp"`로 바꾸고 OG 이미지를 다시 만듭니다.
+사진은 `public/images/`의 `01_main` · `02_room_cream` · `03_seating` · `04_room_blue` · `05_room_green` · `06_hall` (.webp)입니다.
+같은 이름으로 덮어쓰면 교체됩니다. 확장자가 다르면 `lib/content.ts`의 `IMG_EXT`를 바꾸세요.
+게시하는 사진은 사용 권한을 확인한 것만 쓰세요. 메인 사진(01)을 바꿨다면 공유 미리보기 이미지도 다시 만듭니다.
 
 ```bash
-node scripts/gen-og.mjs     # public/og.png (공유 미리보기 이미지)
+node scripts/gen-og.mjs     # public/og.png (메인 사진 + 한실장 + 연락처)
 ```
+
+기획서 원본 자료(`han_site_content/`)는 `.gitignore`로 제외되어 저장소에 올라가지 않습니다.
 
 ## SEO / 배포
 

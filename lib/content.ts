@@ -1,7 +1,7 @@
 // 한실장 홈페이지 문구/데이터 (기획서 2026.10.26 기준). 문구·사진은 여기서 교체하세요.
 
-// 실제 매장 사진(webp)을 public/images에 같은 이름으로 넣고 IMG_EXT만 "webp"로 바꾸세요.
-const IMG_EXT = "svg";
+// 사진 교체: public/images에 같은 이름(.webp)으로 덮어쓰세요. 확장자가 다르면 IMG_EXT를 바꿉니다.
+const IMG_EXT = "webp";
 // GitHub Pages(basePath) 배포에서도 경로가 깨지지 않도록 asset()을 거친다
 export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
 const img = (name: string) => asset(`/images/${name}.${IMG_EXT}`);
@@ -26,7 +26,7 @@ export const site = {
   // 배포 주소: 도메인을 연결하면 NEXT_PUBLIC_SITE_URL 환경변수로 바꾸세요
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ksj1011.github.io/studycafe-clone").replace(/\/$/, ""),
   title: "한실장 | 강남 텐카페 예약·방문 문의",
-  description: "방문 날짜와 인원, 원하시는 분위기를 알려주세요. 예약 가능 여부와 방문 위치를 안내해드립니다.",
+  description: "강남 텐카페 예약과 방문 안내. 희망 날짜, 시간, 인원을 한실장에게 문의하세요. 010-5443-3976.",
 };
 
 export const nav = [
@@ -59,7 +59,7 @@ export const guide = {
 
 export const spaces = {
   title: "사진으로 미리 살펴보는 공간",
-  desc: "룸 구성과 좌석, 인테리어 분위기를 확인해 보세요. 마음에 드는 공간이 있다면 방문 일정과 함께 문의해 주세요.",
+  desc: ["룸 구성과 좌석, 인테리어 분위기를 확인해 보세요.", "마음에 드는 공간이 있다면 방문 일정과 함께 문의해 주세요."],
   button: "공간 문의하기",
   items: [
     { title: "은은한 조명의 룸", desc: "크림색 소파와 곡선 조명이 어우러진 룸을 살펴보세요.", img: photos.roomCream },
@@ -96,11 +96,11 @@ export const faq = {
 };
 
 export const gallery = [
-  { src: photos.main, alt: "메인 룸" },
-  { src: photos.roomCream, alt: "크림색 소파 룸" },
-  { src: photos.seating, alt: "좌석 공간" },
-  { src: photos.roomBlue, alt: "블루 톤의 룸" },
-  { src: photos.roomGreen, alt: "그린 포인트 룸" },
+  { src: photos.main, alt: "우드 벽과 샹들리에가 보이는 룸 전경" },
+  { src: photos.roomCream, alt: "크림색 소파와 곡선 조명이 어우러진 룸" },
+  { src: photos.seating, alt: "테이블을 둘러싼 좌석과 룸 내부" },
+  { src: photos.roomBlue, alt: "블루 톤의 소파와 샹들리에가 있는 룸" },
+  { src: photos.roomGreen, alt: "그린 쿠션과 따뜻한 조명으로 꾸며진 룸" },
 ];
 
 export const closing = {

@@ -66,7 +66,7 @@ export default function Spaces() {
     <section id="spaces" className="scroll-mt-[68px] bg-[var(--sand)]/50 py-14 sm:py-20">
       <div className="mx-auto max-w-[1200px] px-6">
         <h2 className="text-2xl font-bold sm:text-3xl">{spaces.title}</h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">{spaces.desc}</p>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">{spaces.desc[0]}<br className="hidden sm:block" /> {spaces.desc[1]}</p>
       </div>
       <div className="relative mt-8">
         <button aria-label="이전" className={`${arrow} left-6`} disabled={index === 0} onClick={() => goTo(index - 1)}>‹</button>

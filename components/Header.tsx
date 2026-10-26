@@ -61,12 +61,15 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--ink)] text-white">
       <div className="mx-auto flex h-[68px] max-w-[1200px] items-center gap-4 px-4 sm:px-6 md:gap-10">
         <a href="#" onClick={(e) => { e.preventDefault(); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="shrink-0 whitespace-nowrap text-xl font-bold">{contact.name}</a>
-        <nav className="ml-auto hidden gap-2 text-[15px] font-medium md:flex lg:gap-4">
-          {nav.map((n) => (
-            <a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-11 items-center border-b-2 px-2 transition-colors hover:text-[var(--cream)] ${active === n.id ? "border-[var(--cream)] text-[var(--cream)]" : "border-transparent text-white/80"}`}>{n.label}</a>
-          ))}
-        </nav>
-        <button aria-label="메뉴" aria-expanded={open} onClick={() => setOpen((v) => !v)} className="-mr-2 ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-xl md:hidden">{open ? "✕" : "☰"}</button>
+        <div className="ml-auto flex items-center gap-1 md:gap-6">
+          <nav className="hidden gap-2 text-[15px] font-medium md:flex lg:gap-4">
+            {nav.map((n) => (
+              <a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-11 items-center border-b-2 px-2 transition-colors hover:text-[var(--cream)] ${active === n.id ? "border-[var(--cream)] text-[var(--cream)]" : "border-transparent text-white/80"}`}>{n.label}</a>
+            ))}
+          </nav>
+          <a href={contact.tel} className="inline-flex min-h-10 shrink-0 items-center rounded-lg bg-[var(--cream)] px-4 text-sm font-semibold text-[var(--ink)] transition hover:brightness-95">전화 문의</a>
+          <button aria-label="메뉴" aria-expanded={open} onClick={() => setOpen((v) => !v)} className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-xl md:hidden">{open ? "✕" : "☰"}</button>
+        </div>
       </div>
       {open && (
         <nav className="absolute left-0 right-0 top-full flex flex-col border-b border-white/10 bg-[var(--ink)] px-6 py-2 shadow-lg md:hidden">
