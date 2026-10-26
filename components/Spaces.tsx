@@ -1,26 +1,35 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { spaces } from "@/lib/content";
+import { contact, spaces } from "@/lib/content";
 
 export default function Spaces() {
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, startX: 0, startLeft: 0 });
   const [index, setIndex] = useState(0);
+  const [atEnd, setAtEnd] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const count = spaces.items.length;
 
   const step = () => {
-    const el = scroller.current;
-    const card = el?.firstElementChild as HTMLElement | null;
-    return card ? card.offsetWidth + 8 : 648;
+    const kids = scroller.current?.children;
+    if (!kids?.length) return 360;
+    const a = kids[0] as HTMLElement;
+    const b = kids[1] as HTMLElement | undefined;
+    return b ? b.offsetLeft - a.offsetLeft : a.offsetWidth;
   };
 
   const sync = useCallback(() => {
     const el = scroller.current;
-    if (el) setIndex(Math.min(spaces.length - 1, Math.max(0, Math.round(el.scrollLeft / step()))));
-  }, []);
+    if (!el) return;
+    const end = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2;
+    setAtEnd(end);
+    setIndex(end ? count - 1 : Math.min(count - 1, Math.max(0, Math.round(el.scrollLeft / step()))));
+  }, [count]);
+
+  useEffect(() => { sync(); window.addEventListener("resize", sync); return () => window.removeEventListener("resize", sync); }, [sync]);
 
   const goTo = (i: number) => {
-    const next = Math.min(spaces.length - 1, Math.max(0, i));
+    const next = Math.min(count - 1, Math.max(0, i));
     scroller.current?.scrollTo({ left: next * step(), behavior: "smooth" });
   };
 
@@ -50,17 +59,18 @@ export default function Spaces() {
     goTo(Math.round(scroller.current!.scrollLeft / step()));
   };
 
-  const arrow = "absolute top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl text-neutral-900 shadow-lg transition hover:scale-110 disabled:pointer-events-none disabled:opacity-0 md:flex";
+  const arrow = "absolute top-[38%] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl shadow-lg ring-1 ring-black/5 transition hover:scale-110 disabled:pointer-events-none disabled:opacity-0 md:flex";
+  const pad = "max(24px, calc((100vw - 1200px) / 2))";
 
   return (
-    <section id="products" className="scroll-mt-[68px] py-16">
-      <div className="mx-auto max-w-[640px] px-6">
-        <h2 className="text-2xl font-bold leading-snug sm:text-3xl">5가지 스타일의<br />라운지를 이용하세요</h2>
-        <p className="mt-6 text-base text-neutral-300 sm:text-lg">비즈니스, 작업, 공부 어떤 목적에도 맞는 좌석</p>
+    <section id="spaces" className="scroll-mt-[68px] bg-[var(--sand)]/50 py-14 sm:py-20">
+      <div className="mx-auto max-w-[1200px] px-6">
+        <h2 className="text-2xl font-bold sm:text-3xl">{spaces.title}</h2>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg">{spaces.desc}</p>
       </div>
-      <div className="relative mt-10">
+      <div className="relative mt-8">
         <button aria-label="이전" className={`${arrow} left-6`} disabled={index === 0} onClick={() => goTo(index - 1)}>‹</button>
-        <button aria-label="다음" className={`${arrow} right-6`} disabled={index === spaces.length - 1} onClick={() => goTo(index + 1)}>›</button>
+        <button aria-label="다음" className={`${arrow} right-6`} disabled={atEnd} onClick={() => goTo(index + 1)}>›</button>
         <div
           ref={scroller}
           tabIndex={0}
@@ -69,25 +79,27 @@ export default function Spaces() {
           onPointerMove={onPointerMove}
           onPointerUp={endDrag}
           onPointerLeave={endDrag}
-          className={`no-scrollbar flex select-none gap-2 overflow-x-auto px-6 outline-none md:px-[calc(50vw-320px)] ${dragging ? "cursor-grabbing" : "cursor-grab snap-x snap-mandatory scroll-smooth"}`}
-          style={{ scrollPaddingLeft: "max(24px, calc(50vw - 320px))" }}
+          className={`no-scrollbar flex select-none gap-4 overflow-x-auto outline-none ${dragging ? "cursor-grabbing" : "cursor-grab snap-x snap-mandatory scroll-smooth"}`}
+          style={{ paddingInline: pad, scrollPaddingInline: pad }}
         >
-          {spaces.map((s, i) => (
-            <article key={s.title} className={`group relative h-[360px] w-[640px] sm:h-[420px] max-w-[85vw] shrink-0 snap-start overflow-hidden rounded-2xl text-white transition-opacity duration-300 ${i === index ? "opacity-100" : "opacity-60"}`}>
-              <img src={s.img} alt={s.title} loading="lazy" decoding="async" draggable={false} className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-8 left-8 z-10 transition-transform duration-300 group-hover:-translate-y-1">
-                <h3 className="font-semibold">{s.title}</h3>
-                <p className="mt-1 text-sm opacity-80">{s.desc}</p>
+          {spaces.items.map((s) => (
+            <article key={s.title} className="flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-white sm:w-[340px] lg:w-[380px]">
+              <img src={s.img} alt={s.title} loading="lazy" decoding="async" draggable={false} className="aspect-[4/3] w-full object-cover" />
+              <div className="p-5 sm:p-6">
+                <h3 className="text-lg font-bold">{s.title}</h3>
+                <p className="mt-2 text-[15px] leading-7 text-[var(--muted)]">{s.desc}</p>
               </div>
             </article>
           ))}
         </div>
       </div>
       <div className="mt-4 flex justify-center">
-        {spaces.map((s, i) => (
-          <button key={s.title} aria-label={`${s.title} 보기`} onClick={() => goTo(i)} className="flex h-8 items-center px-2"><span className={`block h-2 rounded-full transition-all ${i === index ? "w-6 bg-white" : "w-2 bg-neutral-700"}`} /></button>
+        {spaces.items.map((s, i) => (
+          <button key={s.title} aria-label={`${s.title} 보기`} onClick={() => goTo(i)} className="flex h-8 items-center px-2"><span className={`block h-2 rounded-full transition-all ${i === index ? "w-6 bg-[var(--ink)]" : "w-2 bg-neutral-300"}`} /></button>
         ))}
+      </div>
+      <div className="mt-6 flex justify-center px-6">
+        <a href={contact.sms} className="inline-flex min-h-12 items-center rounded-xl bg-[var(--ink)] px-8 font-semibold text-[var(--cream)] transition hover:opacity-90">{spaces.button}</a>
       </div>
     </section>
   );

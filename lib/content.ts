@@ -1,65 +1,107 @@
-// 홍보용 사이트 문구/데이터. 브랜드명·카피·이미지는 여기서 교체하세요.
-export const brand = {
-  name: "STUDY LOUNGE",
-  phone: "02-000-0000",
-  hours: "평일 09:30 ~ 18:00 (점심시간 12:00~13:00)",
-  address: "서울특별시 OO구 OO로 000, 0층",
-  biz: "사업자 등록번호 : 000-00-00000",
+// 한실장 홈페이지 문구/데이터 (기획서 2026.10.26 기준). 문구·사진은 여기서 교체하세요.
+
+// 실제 매장 사진(webp)을 public/images에 같은 이름으로 넣고 IMG_EXT만 "webp"로 바꾸세요.
+const IMG_EXT = "svg";
+// GitHub Pages(basePath) 배포에서도 경로가 깨지지 않도록 asset()을 거친다
+export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+const img = (name: string) => asset(`/images/${name}.${IMG_EXT}`);
+
+export const photos = {
+  main: img("01_main"),
+  roomCream: img("02_room_cream"),
+  seating: img("03_seating"),
+  roomBlue: img("04_room_blue"),
+  roomGreen: img("05_room_green"),
+  hall: img("06_hall"),
+};
+
+export const contact = {
+  name: "한실장",
+  phone: "010-5443-3976",
+  tel: "tel:01054433976",
+  sms: "sms:01054433976",
+};
+
+export const site = {
+  title: "한실장 | 강남 텐카페 예약·방문 문의",
+  description: "방문 날짜와 인원, 원하시는 분위기를 알려주세요. 예약 가능 여부와 방문 위치를 안내해드립니다.",
 };
 
 export const nav = [
-  { label: "지점찾기", id: "branches" },
-  { label: "프로모션", id: "promotion" },
-  { label: "상품 안내", id: "products" },
-  { label: "창업 안내", id: "contact" },
+  { label: "한실장 소개", id: "intro" },
+  { label: "공간 안내", id: "spaces" },
+  { label: "예약 방법", id: "reservation" },
+  { label: "문의", id: "contact" },
 ];
 
-export const facilities = [
-  { title: "카페테리아", desc: "무제한으로 즐기는 커피와 차를 준비했어요" },
-  { title: "복합기", desc: "출력, 복사, 스캔을 자유롭게 이용하세요" },
-  { title: "휴게공간", desc: "편안하게 쉬어갈 수 있는 라운지 공간" },
-  { title: "사무 용품", desc: "업무에 필요한 기본 용품을 비치했어요" },
-];
+export const hero = {
+  eyebrow: "강남 텐카페 예약·방문 안내",
+  title: ["원하는 분위기에 맞춰,", "한실장이 안내합니다."],
+  lines: ["방문 날짜와 인원, 원하시는 분위기를 알려주세요.", "예약 가능 여부와 방문 위치를 안내해드립니다."],
+};
 
-export const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+export const intro = {
+  title: "처음 방문하셔도 편하게 문의하세요.",
+  lines: ["방문 목적과 인원, 희망 일정을 말씀해 주세요.", "공간 선택부터 예약 방법, 방문 위치까지 안내해드립니다."],
+};
 
-export const spaces = [
-  { title: "오픈 테이블", desc: "카페 같은 자유로운 분위기의 오픈형 좌석", img: asset("/images/open.svg") },
-  { title: "듀얼 모니터 석", desc: "집중이 필요한 업무를 위한 모니터 좌석", img: asset("/images/monitor.svg") },
-  { title: "포커스 부스", desc: "칸막이로 분리된 조용한 1인 공간", img: asset("/images/booth.svg") },
-  { title: "소파 라운지", desc: "가벼운 미팅과 휴식을 위한 소파석", img: asset("/images/sofa.svg") },
-  { title: "스탠딩 바", desc: "잠깐의 작업에 좋은 스탠딩 좌석", img: asset("/images/stand.svg") },
-];
-
-export const plans = {
-  subscription: [
-    { name: "에브리데이 플러스", best: true, price: "170,000", perks: ["매일 이용", "1개 지점 지정", "타 지점 월 5회 이용", "전 좌석 무제한 이용", "월 10 크레딧 지급"] },
-    { name: "에브리데이", best: false, price: "140,000", perks: ["매일 이용", "1개 지점 지정", "전 좌석 무제한 이용", "월 10 크레딧 지급"] },
-    { name: "위켄드 플러스", best: true, price: "60,000", perks: ["주말 이용", "1개 지점 지정", "타 지점 월 2회 이용", "전 좌석 무제한 이용"] },
-    { name: "위켄드", best: false, price: "47,000", perks: ["주말 이용", "1개 지점 지정", "전 좌석 무제한 이용", "월 6 크레딧 지급"] },
-  ],
-  oneday: [
-    { name: "원데이 패스", best: false, price: "15,000", perks: ["당일 이용", "전 지점 이용 가능", "전 좌석 이용"] },
-    { name: "원데이 프리미엄", best: true, price: "22,000", perks: ["당일 이용", "전 지점 이용 가능", "모니터 좌석 이용", "음료 1잔 제공"] },
+export const guide = {
+  title: "방문 전 안내해드리는 내용",
+  items: [
+    { no: "01", title: "방문 상담", desc: "처음 방문하시거나 궁금한 점이 있다면 편하게 문의해 주세요." },
+    { no: "02", title: "공간 안내", desc: "방문 인원과 원하시는 분위기에 맞춰 공간 선택에 필요한 내용을 안내해드립니다." },
+    { no: "03", title: "일정 확인", desc: "희망 날짜와 시간을 알려주시면 예약 가능 여부를 확인해드립니다." },
+    { no: "04", title: "위치 안내", desc: "방문하실 매장의 정확한 위치와 이동 방법을 안내해드립니다." },
   ],
 };
 
-export const branches = [
-  { name: "강남점", lat: 37.4979, lng: 127.0276 },
-  { name: "역삼점", lat: 37.5007, lng: 127.0365 },
-  { name: "선릉점", lat: 37.5045, lng: 127.0490 },
-  { name: "잠실점", lat: 37.5133, lng: 127.1002 },
-  { name: "방배점", lat: 37.4813, lng: 126.9976 },
-  { name: "공덕점", lat: 37.5440, lng: 126.9516 },
-  { name: "홍대점", lat: 37.5572, lng: 126.9245 },
+export const spaces = {
+  title: "사진으로 미리 살펴보는 공간",
+  desc: "룸 구성과 좌석, 인테리어 분위기를 확인해 보세요. 마음에 드는 공간이 있다면 방문 일정과 함께 문의해 주세요.",
+  button: "공간 문의하기",
+  items: [
+    { title: "은은한 조명의 룸", desc: "크림색 소파와 곡선 조명이 어우러진 룸을 살펴보세요.", img: photos.roomCream },
+    { title: "좌석 공간", desc: "테이블을 둘러싼 좌석과 룸 내부의 구성을 확인해 보세요.", img: photos.seating },
+    { title: "블루 톤의 룸", desc: "블루 톤의 소파와 샹들리에가 있는 공간을 살펴보세요.", img: photos.roomBlue },
+    { title: "그린 포인트 룸", desc: "그린 쿠션과 따뜻한 조명으로 꾸며진 룸을 살펴보세요.", img: photos.roomGreen },
+    { title: "복도 둘러보기", desc: "복도와 실내 마감에서 느껴지는 공간의 분위기를 확인해 보세요.", img: photos.hall },
+  ],
+};
+
+export const reservation = {
+  title: "방문 전, 이렇게 문의해 주세요.",
+  steps: [
+    { title: "전화 또는 문자로 문의", desc: `${contact.name} ${contact.phone}으로 연락해 주세요.` },
+    { title: "희망 일정과 인원 전달", desc: "방문 날짜, 시간, 인원과 원하시는 분위기를 알려주세요." },
+    { title: "예약 내용과 위치 확인", desc: "방문 가능 여부와 매장 위치를 안내받으신 후 방문해 주세요." },
+  ],
+};
+
+export const location = {
+  title: "방문 위치 안내",
+  lines: ["방문하실 매장의 정확한 위치와 이동 방법은 예약 문의 시 안내해드립니다.", "차량으로 방문하실 경우 주차 가능 여부도 함께 확인해 주세요."],
+  button: "위치 문의하기",
+};
+
+export const faq = {
+  title: "자주 묻는 질문",
+  items: [
+    { q: "처음 방문하는데 어떻게 문의하나요?", a: "전화나 문자로 희망 날짜와 시간, 방문 인원을 알려주세요. 궁금한 내용도 함께 말씀해 주시면 됩니다." },
+    { q: "당일 방문도 문의할 수 있나요?", a: "당일 방문을 원하시면 전화로 문의해 주세요. 방문 가능 여부를 확인해 안내해드립니다." },
+    { q: "여러 명이 함께 방문하고 싶어요.", a: "예상 인원과 희망 일정을 알려주세요. 인원에 맞는 공간을 확인해드립니다." },
+    { q: "위치와 주차는 어떻게 확인하나요?", a: "방문하실 매장의 위치와 주차 가능 여부는 예약 문의 시 확인해 주세요." },
+  ],
+};
+
+export const gallery = [
+  { src: photos.main, alt: "메인 룸" },
+  { src: photos.roomCream, alt: "크림색 소파 룸" },
+  { src: photos.seating, alt: "좌석 공간" },
+  { src: photos.roomBlue, alt: "블루 톤의 룸" },
+  { src: photos.roomGreen, alt: "그린 포인트 룸" },
 ];
 
-export const reviews = [
-  { text: "노트북만 있으면 듀얼모니터를 쓸 수 있는 모니터 자리가 있어서 대만족이에요.", name: "박*훈", place: "강남점" },
-  { text: "집에 걸어갈 수 있는 거리라 출퇴근 기분이 나고 집중도 잘 돼요.", name: "조*재", place: "방배점" },
-  { text: "생활권 안에 있는 라운지를 이용하면 편리합니다. 이동 시간을 아껴서 생산적으로 쓰고 있어요.", name: "권*혜", place: "공덕점" },
-  { text: "혼자 일하니까 여럿이 있는 분위기가 필요했는데 딱 맞는 환경이에요.", name: "양*민", place: "수내점" },
-  { text: "조용하지만 너무 적막하지 않아서 적당한 분위기에서 일할 수 있어요.", name: "이*지", place: "홍대점" },
-];
-
-export const gallery = ["hero", "open", "monitor", "booth", "sofa"].map((n) => asset(`/images/${n}.svg`));
+export const closing = {
+  title: "예약과 방문 안내는 한실장에게",
+  note: "방문 날짜 · 시간 · 인원을 함께 남겨주세요.",
+};

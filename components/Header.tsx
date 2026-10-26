@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { brand, nav } from "@/lib/content";
+import { contact, nav } from "@/lib/content";
+
+const HEADER_H = 68;
 
 export default function Header() {
   const [active, setActive] = useState<string | null>(null);
@@ -21,12 +23,14 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      // 메뉴 순서와 페이지 섹션 순서가 달라서, 헤더 아래에 걸친 섹션 중 시작점이 가장 아래인 것을 고른다
+      // 헤더 아래 화면 위쪽 35% 지점을 기준선으로, 그 선을 지난 섹션 중 시작점이 가장 아래인 것을 고른다
+      // (헤더 바로 아래까지 올라와야 켜지면 화면에 보이는 섹션보다 메뉴 강조가 늦는다)
+      const line = HEADER_H + (window.innerHeight - HEADER_H) * 0.35;
       let cur: string | null = null;
       let best = -Infinity;
       for (const n of nav) {
         const top = document.getElementById(n.id)?.getBoundingClientRect().top;
-        if (top !== undefined && top <= 120 && top > best) { best = top; cur = n.id; }
+        if (top !== undefined && top <= line && top > best) { best = top; cur = n.id; }
       }
       // 페이지 끝에서는 문의 섹션이 헤더 선까지 못 올라오므로 마지막 섹션을 켠다
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) cur = "contact";
@@ -54,19 +58,19 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--bg)]">
-      <div className="flex h-[68px] items-center gap-4 px-4 sm:px-6 md:gap-10 lg:px-20">
-        <a href="#" onClick={(e) => { e.preventDefault(); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="shrink-0 whitespace-nowrap text-base font-extrabold tracking-wider sm:text-lg sm:tracking-widest">{brand.name}</a>
-        <nav className="hidden gap-2 text-[15px] font-medium md:flex lg:gap-4">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--ink)] text-white">
+      <div className="mx-auto flex h-[68px] max-w-[1200px] items-center gap-4 px-4 sm:px-6 md:gap-10">
+        <a href="#" onClick={(e) => { e.preventDefault(); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="shrink-0 whitespace-nowrap text-xl font-bold">{contact.name}</a>
+        <nav className="ml-auto hidden gap-2 text-[15px] font-medium md:flex lg:gap-4">
           {nav.map((n) => (
-            <a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-11 items-center border-b-2 px-2 transition-colors hover:text-[var(--brand)] ${active === n.id ? "border-[var(--brand)] text-[var(--brand)]" : "border-transparent"}`}>{n.label}</a>
+            <a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-11 items-center border-b-2 px-2 transition-colors hover:text-[var(--cream)] ${active === n.id ? "border-[var(--cream)] text-[var(--cream)]" : "border-transparent text-white/80"}`}>{n.label}</a>
           ))}
         </nav>
         <button aria-label="메뉴" aria-expanded={open} onClick={() => setOpen((v) => !v)} className="-mr-2 ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-xl md:hidden">{open ? "✕" : "☰"}</button>
       </div>
       {open && (
-        <nav className="absolute left-0 right-0 top-full flex flex-col border-b border-t border-white/10 bg-[var(--bg)] px-6 py-2 shadow-lg md:hidden">
-          {nav.map((n) => (<a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-12 items-center text-base font-medium ${active === n.id ? "text-[var(--brand)]" : ""}`}>{n.label}</a>))}
+        <nav className="absolute left-0 right-0 top-full flex flex-col border-b border-white/10 bg-[var(--ink)] px-6 py-2 shadow-lg md:hidden">
+          {nav.map((n) => (<a key={n.id} href={`#${n.id}`} onClick={(e) => go(e, n.id)} className={`flex min-h-12 items-center text-base font-medium ${active === n.id ? "text-[var(--cream)]" : "text-white/85"}`}>{n.label}</a>))}
         </nav>
       )}
     </header>
