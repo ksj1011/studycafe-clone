@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { site } from "@/lib/content";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ksj1011.github.io/studycafe-clone";
+const siteUrl = site.url;
 const { title, description } = site;
 
 export const metadata: Metadata = {

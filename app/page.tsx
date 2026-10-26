@@ -13,8 +13,8 @@ import { contact, hero, site } from "@/lib/content";
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "WebSite", name: contact.name, inLanguage: "ko-KR" },
-    { "@type": "Organization", name: contact.name, description: site.description, telephone: "+82-10-5443-3976", areaServed: "서울 강남", slogan: hero.title.join(" ") },
+    { "@type": "WebSite", name: contact.name, url: `${site.url}/`, inLanguage: "ko-KR" },
+    { "@type": "Organization", name: contact.name, url: `${site.url}/`, description: site.description, telephone: "+82-10-5443-3976", areaServed: "서울 강남", slogan: hero.title.join(" ") },
   ],
 };
 

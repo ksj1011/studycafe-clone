@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 한실장 — 예약·방문 안내 홈페이지
 
-## Getting Started
+Next.js(App Router) + Tailwind로 만든 단일 페이지 사이트입니다. 기획서(2026.10.26) 구성을 따릅니다.
 
-First, run the development server:
+## 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # 빌드 (sitemap.xml / robots.txt 자동 생성)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 내용 수정
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+문구, 연락처, 메뉴, FAQ는 모두 `lib/content.ts` 한 곳에서 바꿉니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 사진 교체
 
-## Learn More
+현재 사진은 샘플 일러스트입니다. 사용 권한을 확인한 실제 매장 사진(webp)을 `public/images/`에 아래 이름으로 넣으세요.
 
-To learn more about Next.js, take a look at the following resources:
+`01_main` · `02_room_cream` · `03_seating` · `04_room_blue` · `05_room_green` · `06_hall`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+그다음 `lib/content.ts`의 `IMG_EXT`를 `"webp"`로 바꾸고 OG 이미지를 다시 만듭니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node scripts/gen-og.mjs     # public/og.png (공유 미리보기 이미지)
+```
 
-## Deploy on Vercel
+## SEO / 배포
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 메타데이터·JSON-LD: `app/layout.tsx`, `app/page.tsx` (문구는 `lib/content.ts`의 `site`)
+- 배포 주소: `NEXT_PUBLIC_SITE_URL` 환경변수 (기본값은 GitHub Pages 주소)
+- 아이콘: `node scripts/gen-icons.mjs` → `app/icon.png`, `app/apple-icon.png`, `app/favicon.ico`
+- `main`에 푸시하면 GitHub Actions가 GitHub Pages로 배포합니다 (`.github/workflows/deploy.yml`).

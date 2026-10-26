@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://ksj1011.github.io/studycafe-clone/sitemap.xml

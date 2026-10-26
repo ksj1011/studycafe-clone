@@ -23,6 +23,8 @@ export const contact = {
 };
 
 export const site = {
+  // 배포 주소: 도메인을 연결하면 NEXT_PUBLIC_SITE_URL 환경변수로 바꾸세요
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ksj1011.github.io/studycafe-clone").replace(/\/$/, ""),
   title: "한실장 | 강남 텐카페 예약·방문 문의",
   description: "방문 날짜와 인원, 원하시는 분위기를 알려주세요. 예약 가능 여부와 방문 위치를 안내해드립니다.",
 };

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prebuild에서 생성 (scripts/gen-sitemap.mjs)
+/public/sitemap.xml
+/public/robots.txt
